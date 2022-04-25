@@ -1,12 +1,30 @@
-//import react into the bundle
 import React from "react";
 import ReactDOM from "react-dom";
 
-// include your styles into the webpack bundle
-import "../styles/index.css";
+import Contador from "./component/contador";
 
-//import your own components
-import Home from "./component/home.jsx";
+let segundosContador = 0;
 
-//render your react application
-ReactDOM.render(<Home />, document.querySelector("#app"));
+setInterval(() => {
+	const seis = Math.floor(segundosContador / 100000);
+	const cinco = Math.floor(segundosContador / 10000);
+	const cuatro = Math.floor(segundosContador / 1000);
+	const tres = Math.floor(segundosContador / 100);
+	const dos = Math.floor(segundosContador / 10);
+	const uno = Math.floor(segundosContador / 1);
+	console.log(seis, cinco, cuatro, tres, dos, uno);
+
+	segundosContador++;
+
+	ReactDOM.render(
+		<Contador
+			posicionuno={uno}
+			posiciondos={dos}
+			posiciontres={tres}
+			posicioncuatro={cuatro}
+			posicioncinco={cinco}
+			posicionseis={seis}
+		/>,
+		document.getElementById("app")
+	);
+}, 1000);
